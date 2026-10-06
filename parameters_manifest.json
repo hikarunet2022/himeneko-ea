@@ -1,0 +1,461 @@
+{
+  "version": "1.10",
+  "parameters": [
+    {
+      "type": "ulong",
+      "name": "InpMagic",
+      "default": "26100510",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpAllowLiveTrading",
+      "default": "false",
+      "comment": "tester only by default"
+    },
+    {
+      "type": "int",
+      "name": "InpMaxPositions",
+      "default": "1",
+      "comment": "one position; no averaging"
+    },
+    {
+      "type": "int",
+      "name": "InpMaxSpreadPoints",
+      "default": "500",
+      "comment": "points, NOT pips; broker-specific hypothesis"
+    },
+    {
+      "type": "int",
+      "name": "InpMaxSlippagePoints",
+      "default": "20",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpMarginUsePercent",
+      "default": "80.0",
+      "comment": ""
+    },
+    {
+      "type": "string",
+      "name": "InpRunTag",
+      "default": "video_ema",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpWriteCSV",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpWriteDecisionCSV",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "ENUM_HN_RISK",
+      "name": "InpRiskMode",
+      "default": "VIDEO_BALANCE_STEP",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpRiskPercent",
+      "default": "1.0",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpFixedLot",
+      "default": "0.1",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpMaxLot",
+      "default": "10.0",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpRoundTripCostPerLot",
+      "default": "0.0",
+      "comment": ""
+    },
+    {
+      "type": "string",
+      "name": "InpStepCurrency",
+      "default": "JPY",
+      "comment": ""
+    },
+    {
+      "type": "string",
+      "name": "InpBalanceLotSteps",
+      "default": "0:0.1;10000:0.1;30000:0.2;50000:0.3;100000:0.5;150000:0.5;300000:0.7;500000:1.0;1000000:1.6",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpProportionalAboveLastStep",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpUseManualStepConversion",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "string",
+      "name": "InpConversionAccountCurrency",
+      "default": "USD",
+      "comment": "guard against applying JPY/USD rate to EUR etc."
+    },
+    {
+      "type": "double",
+      "name": "InpStepUnitsPerAccountUnit",
+      "default": "150.0",
+      "comment": "hypothetical JPY per USD, NOT current FX"
+    },
+    {
+      "type": "bool",
+      "name": "InpStopBelowFirstStep",
+      "default": "false",
+      "comment": "false: use first lot below first threshold"
+    },
+    {
+      "type": "bool",
+      "name": "InpEnableLong",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpEnableShort",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "ENUM_HN_DIRECTION",
+      "name": "InpTrendMode",
+      "default": "AUTO_DIRECTION",
+      "comment": ""
+    },
+    {
+      "type": "ENUM_HN_ALIGN",
+      "name": "InpTrendAlignment",
+      "default": "STRICT_ALIGNMENT",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpUseD1Trend",
+      "default": "false",
+      "comment": "no longer mandatory"
+    },
+    {
+      "type": "bool",
+      "name": "InpUseH1Trend",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpUseH4Trend",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpFastMA",
+      "default": "20",
+      "comment": "M3"
+    },
+    {
+      "type": "int",
+      "name": "InpM15MA",
+      "default": "20",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpHigherMA",
+      "default": "20",
+      "comment": "H1/H4"
+    },
+    {
+      "type": "int",
+      "name": "InpTrendMA",
+      "default": "200",
+      "comment": "D1, only if enabled"
+    },
+    {
+      "type": "ENUM_MA_METHOD",
+      "name": "InpMAMethod",
+      "default": "MODE_EMA",
+      "comment": ""
+    },
+    {
+      "type": "ENUM_APPLIED_PRICE",
+      "name": "InpMAPrice",
+      "default": "PRICE_CLOSE",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpSlopeBars",
+      "default": "3",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpMinTrendSlopeATR",
+      "default": "0.02",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpTrendRequirePriceSide",
+      "default": "false",
+      "comment": "default direction uses MA slope only"
+    },
+    {
+      "type": "bool",
+      "name": "InpUseADX",
+      "default": "true",
+      "comment": "supplemental condition, not a claimed personal rule"
+    },
+    {
+      "type": "int",
+      "name": "InpADXPeriod",
+      "default": "14",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpMinADX",
+      "default": "20.0",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpATRPeriod",
+      "default": "14",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpMinATR",
+      "default": "0.0",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpMaxATR",
+      "default": "0.0",
+      "comment": ""
+    },
+    {
+      "type": "ENUM_HN_TOUCH",
+      "name": "InpTouchMode",
+      "default": "MA_REBOUND",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpTouchATR",
+      "default": "0.2",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpUseRSI",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpRSIPeriod",
+      "default": "14",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpRSIBuyLevel",
+      "default": "20.0",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpRSISellLevel",
+      "default": "80.0",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpRSILookback",
+      "default": "1",
+      "comment": "1: same confirmed signal bar; >1 explicitly changes hypothesis"
+    },
+    {
+      "type": "bool",
+      "name": "InpUseWickFilter",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpWickBodyRatio",
+      "default": "1.5",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpLowerWickPercent",
+      "default": "40.0",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpUpperWickPercent",
+      "default": "40.0",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpBodyFloorPoints",
+      "default": "1.0",
+      "comment": "denominator floor for doji"
+    },
+    {
+      "type": "bool",
+      "name": "InpRequireSignalColor",
+      "default": "false",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpCooldownBars",
+      "default": "1",
+      "comment": ""
+    },
+    {
+      "type": "ENUM_HN_SL_BASIS",
+      "name": "InpSLBasis",
+      "default": "SWING_STOP",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpSwingLookback",
+      "default": "10",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpSLBufferATR",
+      "default": "0.1",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpSLATRMultiplier",
+      "default": "1.0",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpSLDistancePrice",
+      "default": "2.0",
+      "comment": "price units, not ambiguously named gold pips"
+    },
+    {
+      "type": "ENUM_HN_SL",
+      "name": "InpSLMode",
+      "default": "FIXED_STOP",
+      "comment": "new specification places SL at entry"
+    },
+    {
+      "type": "double",
+      "name": "InpEmergencySLMultiplier",
+      "default": "3.0",
+      "comment": ""
+    },
+    {
+      "type": "ENUM_HN_TP",
+      "name": "InpTPMode",
+      "default": "BB_TARGET",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpBBPeriod",
+      "default": "20",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpBBDeviation",
+      "default": "2.0",
+      "comment": ""
+    },
+    {
+      "type": "ENUM_TIMEFRAMES",
+      "name": "InpBBTimeframe",
+      "default": "PERIOD_M3",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpRiskReward",
+      "default": "1.5",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpUseSupportResistance",
+      "default": "false",
+      "comment": "V1 simple closed-bar extremes; advanced zones deferred"
+    },
+    {
+      "type": "int",
+      "name": "InpSRLookback",
+      "default": "50",
+      "comment": ""
+    },
+    {
+      "type": "double",
+      "name": "InpSRDistanceATR",
+      "default": "0.5",
+      "comment": "M3 ATR units"
+    },
+    {
+      "type": "double",
+      "name": "InpMaxDailyLossPercent",
+      "default": "0.0",
+      "comment": ""
+    },
+    {
+      "type": "bool",
+      "name": "InpCloseOnDailyLoss",
+      "default": "true",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpMaxDailyTrades",
+      "default": "0",
+      "comment": ""
+    },
+    {
+      "type": "int",
+      "name": "InpMaxConsecutiveLosses",
+      "default": "0",
+      "comment": ""
+    }
+  ]
+}
